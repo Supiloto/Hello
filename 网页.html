@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechLab - 教程平台</title>
+    <style>
+        :root {
+            --primary: #64ffda;
+            --bg-dark: #0a192f;
+            --text-light: #ccd6f6;
+        }
+
+        /* 侧边栏折叠动画 */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: rgba(10, 25, 47, 0.95);
+            position: fixed;
+            left: -250px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+        .sidebar.active { left: 0; }
+
+        /* 科技风格登录表单 */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0a192f, #020c1b);
+        }
+        .login-box {
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.2);
+        }
+
+        /* 动态交互效果 */
+        .hvr-glow {
+            transition: text-shadow 0.3s ease;
+        }
+        .hvr-glow:hover {
+            text-shadow: 0 0 10px var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏菜单 -->
+    <div class="sidebar" id="sidebar">
+        <nav>
+            <ul style="padding: 20px; color: var(--text-light)">
+                <li><a href="#" class="hvr-glow">🏠 首页</a></li>
+                <li><a href="#" class="hvr-glow">📚 教程库</a></li>
+                <li><a href="#" class="hvr-glow">⚙️ 设置</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="login-container">
+        <div class="login-box">
+            <h2 style="color: var(--primary); text-align: center">欢迎登录 TechLab</h2>
+            <form onsubmit="return handleLogin(event)" style="margin-top: 30px">
+                <div style="margin-bottom: 20px">
+                    <input type="text" placeholder="用户名" 
+                           style="width: 100%; padding: 12px; background: rgba(255,255,255,0.1); 
+                                  border: 1px solid var(--primary); color: var(--text-light)">
+                </div>
+                <div style="margin-bottom: 30px">
+                    <input type="password" placeholder="密码" 
+                           style="width: 100%; padding: 12px; background: rgba(255,255,255,0.1);
+                                  border: 1px solid var(--primary); color: var(--text-light)">
+                </div>
+                <button type="submit" 
+                        style="width: 100%; padding: 12px; background: var(--primary);
+                               border: none; border-radius: 5px; cursor: pointer">
+                    立即登录
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 侧边栏切换
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        // 登录处理（模拟）
+        function handleLogin(event) {
+            event.preventDefault();
+            alert('登录成功！即将跳转至教程页面...');
+            window.location.href = "#";
+            return false;
+        }
+
+        // 自动绑定菜单按钮
+        document.body.innerHTML += `
+            <button onclick="toggleSidebar()" 
+                    style="position: fixed; left: 20px; top: 20px; z-index: 999;
+                           background: none; border: none; color: var(--primary);
+                           font-size: 24px; cursor: pointer">
+                ☰
+            </button>
+        `;
+    </script>
+</body>
+</html>
